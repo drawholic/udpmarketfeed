@@ -2,10 +2,10 @@
 #define SERVER_HPP
 
 #include <sys/socket.h>
-
+#include <netinet/in.h>
 class Server
 {
-	int server_sock;
+	int sock;
 
 	sockaddr_in* server_addr;
 	sockaddr_in* client_addr;
@@ -14,7 +14,7 @@ class Server
 	char* buffer;
 
 	void init_server();
-	
+
 
 public:
 	Server();
