@@ -5,11 +5,22 @@
 
 class Server
 {
+	int server_sock;
+
+	sockaddr_in* server_addr;
+	sockaddr_in* client_addr;
+
+	socklen_t addrlen;
+	char* buffer;
+
+	void init_server();
+	
 
 public:
 	Server();
 
-	
+	void run();
+
 
 };
 
