@@ -3,9 +3,12 @@
 
 #include <sys/socket.h>
 #include <netinet/in.h>
+
 class Server
 {
+	bool running = true;
 	int sock;
+	int client_sock;
 
 	sockaddr_in* server_addr;
 	sockaddr_in* client_addr;
