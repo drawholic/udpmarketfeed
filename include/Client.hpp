@@ -2,6 +2,7 @@
 #define CLIENT_HPP
 
 #include <sys/socket.h>
+#include <netinet/in.h>
 
 class Client
 {
@@ -11,11 +12,13 @@ class Client
 	char* buffer;
 	socklen_t addrlen;
 
-	void init()
+	void init();
 
 public:
 	Client();
+
 	void run();
+
 };
 
 
