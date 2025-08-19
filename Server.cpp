@@ -21,36 +21,46 @@ Server::Server()
 
 };
 
-void Server::run()
+int Server::accept_client()
 {
-	std::cout << "Server has started...\n";
-
-	int bytes_read;
-	while(running){
-
 	client_sock = accept(sock, (sockaddr*)&client_addr, &addrlen);		
 	
 	if(client_sock == -1)	
 	{
 		perror("Failure reading a client");
-		continue;
-	}
-	std::cout << "Accepted a client\n";
- 	bytes_read = read(client_sock, buffer, buffer_length);
+		return -1;
+	};
+	return 0;
+};
+
+int Server::read_client()
+{
+	bytes_read = read(client_sock, buffer, buffer_length);
 
  	if(bytes_read == -1)
  	{
  		perror("Failure reading\n");
- 		continue;
+ 		return -1;
  	};
-
-
  	buffer[bytes_read] = 0;
 
+ 	std::cout << "Received: " << buffer << std::endl;
+ 	return 0;
+};
 
+void Server::run()
+{
 
+	while(running){
 
- 	close(client_sock);
+	if(accept_client())
+		continue;
+
+ 	if(read_client())
+ 		continue;
+
+  	close(client_sock);
+
 	};
 
 
