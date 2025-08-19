@@ -6,7 +6,7 @@ class RingBuffer
 	unsigned toread_idx;
 	unsigned towrite_idx;
 	unsigned length;
-
+	char* buffer;
 
 public:
 	RingBuffer(unsigned);
