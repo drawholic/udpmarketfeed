@@ -1,8 +1,10 @@
 #include "Client.hpp"
 #include <cstdio>
 #include <unistd.h>
-
+#include <cstring>
 const int buffer_length = 1024;
+
+const char* text = "hello server";
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +13,6 @@ int main(int argc, char const *argv[])
 	c.run();
 	return 0;
 }
-
 
 void Client::run()
 {
@@ -24,7 +25,9 @@ void Client::run()
 		return;
 	};
 
-	buffer = "hello server";
+	memcpy(buffer, text, strlen(text));
+
+
 	bytes = send(sock, buffer, buffer_length, 0);
 
 	if(bytes == -1)
