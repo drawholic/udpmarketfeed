@@ -3,9 +3,14 @@
 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include "RingBuffer.hpp"
+
 
 class Server
 {
+
+	RingBuffer* rb;
+
 	bool running = true;
 	int sock;
 	int client_sock;
@@ -17,7 +22,6 @@ class Server
 	char* buffer;
 
 	void init_server();
-
 
 public:
 	Server();
