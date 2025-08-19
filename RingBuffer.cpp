@@ -22,7 +22,7 @@ char RingBuffer::toread()
 {
 	if(toread_idx == length)
 		toread_idx = 0;
-	
-	return buffer[toread_idx++];
-	
+	char c = buffer[toread_idx];
+	buffer[toread_idx++] = 0;
+	return c;
 };
