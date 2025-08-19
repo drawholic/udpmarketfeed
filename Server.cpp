@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <iostream>
 #include <unistd.h>
+
 const int buffer_length = 1024;
 
 int main(int argc, char const *argv[])
@@ -12,12 +13,10 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-
 Server::Server()
 {
 	init_server();
-
-
+	
 };
 
 void Server::run()
@@ -26,15 +25,15 @@ void Server::run()
 
 	int bytes_read;
 	while(running){
-		
-
 
 	client_sock = accept(sock, (sockaddr*)&client_addr, &addrlen);		
+	
 	if(client_sock == -1)	
 	{
 		perror("Failure reading a client");
 		continue;
 	}
+	std::cout << "Accepted a client\n";
  	bytes_read = read(client_sock, buffer, buffer_length);
 
  	if(bytes_read == -1)
