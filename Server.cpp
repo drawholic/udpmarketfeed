@@ -17,7 +17,7 @@ Server::Server()
 {
 	init_server();
 
-	rb = new RingBuffer(5);
+	rb = new RingBuffer(20);
 
 };
 
@@ -43,7 +43,7 @@ int Server::read_client()
  		return -1;
  	};
  	buffer[bytes_read] = 0;
-
+ 
  	std::cout << "Received: " << buffer << std::endl;
  	return 0;
 };
