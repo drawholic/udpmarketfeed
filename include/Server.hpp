@@ -4,7 +4,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include "RingBuffer.hpp"
-
+#include <cstring>
+#include <vector>
+#include <fcntl.h>
 
 class Server
 {
@@ -12,6 +14,7 @@ class Server
 	RingBuffer* rb;
 
 	bool running = true;
+	std::vector<int> clients;
 	int sock;
 	int client_sock;
 
@@ -27,6 +30,7 @@ class Server
 	int accept_client();
 	int read_client();
 	void init_server();
+	int broadcast_clients();
 
 public:
 	Server();
