@@ -16,7 +16,9 @@ int main(int argc, char const *argv[])
 Server::Server()
 {
 	init_server();
-	
+
+	rb = new RingBuffer(5);
+
 };
 
 void Server::run()
@@ -42,9 +44,11 @@ void Server::run()
  		continue;
  	};
 
+
  	buffer[bytes_read] = 0;
 
- 	std::cout << "Received: " << buffer << std::endl;
+
+
 
  	close(client_sock);
 	};
