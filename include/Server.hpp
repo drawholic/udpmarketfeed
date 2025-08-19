@@ -21,6 +21,11 @@ class Server
 	socklen_t addrlen;
 	char* buffer;
 
+	int bytes_read;
+
+
+	int accept_client();
+	int read_client();
 	void init_server();
 
 public:
