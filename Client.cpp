@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <unistd.h>
 #include <cstring>
+#include <iostream>
 const int buffer_length = 1024;
 
 const char* text = "hello server";
@@ -35,7 +36,20 @@ void Client::run()
 		perror("Failure sending");
 		return;
 	};
-	close(sock);
+	while(true)
+	{
+		bytes = recv(sock, buffer, buffer_length, 0);
+		if(bytes == -1)
+			break;
+		if(bytes == 0)
+		{
+			std::cout << "Server disconnected\n";
+			break;
+		}
+		buffer[bytes] = 0;
+		std::cout << "Received: " << buffer << std::endl;
+	};
+	// close(sock);
 
 };
 
@@ -56,7 +70,7 @@ void Client::init()
 
 	server_addr = new sockaddr_in;
 	server_addr->sin_family = AF_INET;
-	server_addr->sin_port = htons(80);
+	server_addr->sin_port = htons(8080);
 	server_addr->sin_addr.s_addr = INADDR_ANY;
 
 	addrlen = sizeof(sockaddr_in);
