@@ -14,8 +14,7 @@ void RingBuffer::towrite(char c)
 	if(towrite_idx == length)
 		towrite_idx = 0;
 	
-	buffer[towrite_idx] = c;
-	towrite_idx++;
+	buffer[towrite_idx++] = c;
 
 };
 
@@ -24,7 +23,6 @@ char RingBuffer::toread()
 	if(toread_idx == length)
 		toread_idx = 0;
 	
-	char c = buffer[toread_idx];
-	toread_idx++;
-	return c;
+	return buffer[toread_idx++];
+	
 };
